@@ -1,43 +1,43 @@
-%for a more compact document, add the option openany to avoid
-%starting all chapters on odd numbered pages
 \documentclass[12pt]{cmuthesis}
 
-% This is a template for a CMU thesis.  It is 18 pages without any content :-)
-% The source for this is pulled from a variety of sources and people.
-% Here's a partial list of people who may or may have not contributed:
-%
-%        bnoble   = Brian Noble
-%        caruana  = Rich Caruana
-%        colohan  = Chris Colohan
-%        comar    = Cyrus Omar
-%        jab      = Justin Boyan
-%        josullvn = Joseph O'Sullivan
-%        jrs      = Jonathan Shewchuk
-%        kosak    = Corey Kosak
-%        mjz      = Matt Zekauskas (mattz@cs)
-%        pdinda   = Peter Dinda
-%        pfr      = Patrick Riley
-%        dkoes = David Koes (me)
 
-% My main contribution is putting everything into a single class files and small
-% template since I prefer this to some complicated sprawling directory tree with
-% makefiles.
-
-% some useful packages
 \usepackage{times}
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[numbers,sort]{natbib}
 \usepackage[backref,pageanchor=true,plainpages=false, pdfpagelabels, bookmarks,bookmarksnumbered,
-%pdfborder=0 0 0,  %removes outlines around hyper links in online display
 ]{hyperref}
 \usepackage{subfigure}
-
-% Approximately 1" margins, more space on binding side
-%\usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar]{geometry}
-%for general printing (not binding)
 \usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar,hmarginratio=1:1]{geometry}
+
+
+
+% macros
+
+\newcommand{\nbc}[3]{
+ {\colorbox{#3}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}
+ {\textcolor{#3}{\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}}
+ }
+
+\newcommand\leo[1]{\nbc{LEO}{#1}{orange}}
+\newcommand\vyas[1]{\nbc{VS}{#1}{blue}}
+
+
+% macros from fray
+
+% macros from exchain 
+\newcommand{\exchain}{{\textsc{ExChain}}}
+
+% macros from fest
+
+\newcommand{\fest}{{\textsc{Fest}}}
+\newcommand{\RSBT}{randomized search-based bounded concurrency testing}
+\newcommand{\RSBTShort}{RSBT}
+
+
+
 
 % Provides a draft mark at the top of the document. 
 \draftstamp{\today}{DRAFT}
@@ -49,17 +49,17 @@
 \pagestyle{empty}
 
 \title{ %% {\it \huge Thesis Proposal}\\
-{\bf Awesome Work in Computer Science}}
-\author{Me}
-\date{January 3006}
-\Year{3006}
+{Thesis Proposal\\ \bf Practical Dynamic Program Analyses for Heterogeneous Cloud Applications}}
+\author{Ao Li}
+\date{October 2024}
+\Year{2024}
 \trnumber{}
 
 \committee{
-Nearly Divine Personage, Chair \\
-Someone else \\
-Yet another person \\
-Someone from a strange and faraway land
+Rohan Padhye (Co-Chair), Carnegie Mellon University \\
+Vyas Sekar (Co-Chair), Carnegie Mellon University  \\
+Ben Titzer, Carnegie Mellon University \\
+Shan Lu, Microsoft Research
 }
 
 \support{}
@@ -68,26 +68,21 @@ Someone from a strange and faraway land
 % copyright notice generated automatically from Year and author.
 % permission added if \permission{} given.
 
-\keywords{Stuff, More Stuff}
+\keywords{Cloud, Program analysis, Testing, Debugging}
 
 \maketitle
 
-\begin{dedication}
-For my dog
-\end{dedication}
+% \begin{dedication}
+% \end{dedication}
 
 \pagestyle{plain} % for toc, was empty
 
 %% Obviously, it's probably a good idea to break the various sections of your thesis
 %% into different files and input them into this file...
 
-\begin{abstract}
-A short summary.
-\end{abstract}
-
-\begin{acknowledgments}
-My advisor is cool.
-\end{acknowledgments}
+\input{files/abstract}
+% \begin{acknowledgments}
+% \end{acknowledgments}
 
 
 
@@ -118,8 +113,9 @@ My advisor is cool.
 % Other than that, just make it look good...
 
 
-\chapter{Introduction}
-\chapter{Conclusion}
+\input{files/introduction}
+\input{files/exchain}
+\input{files/fest}
 
 %\appendix
 %\include{appendix}
@@ -134,6 +130,6 @@ My advisor is cool.
 %\renewcommand{\bibpreamble}{This text goes between the ``Bibliography''
 %  header and the actual list of references}
 \bibliographystyle{plainnat}
-\bibliography{register} %your bib file
+\bibliography{references} %your bib file
 
 \end{document}
